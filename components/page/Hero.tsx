@@ -22,7 +22,7 @@ const Hero = () => {
 
         <div className="mt-4 flex items-center justify-center gap-4 md:mt-8">
           <Button asChild size={'lg'}>
-            <Link href="/editor">Make my resume</Link>
+            <Link href="/editor">Try it out</Link>
           </Button>
         </div>
       </div>
