@@ -7,7 +7,7 @@ const Header = () => {
       <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between px-8 pb-2 pt-4 text-primary md:flex-row">
         <a
           href="#"
-          className="inline-flex gap-x-2 rounded-md border border-transparent p-2 text-2xl font-semibold transition-colors hover:border-primary hover:bg-accent"
+          className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"
         >
           <Image
             src="./icon.svg"
