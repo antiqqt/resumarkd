@@ -10,7 +10,7 @@ const Hero = () => {
             <span>Create beautiful resumes</span>
             <span>with Markdown</span>
           </h1>
-          <div className="text-md leading-relaxed text-primary text-opacity-25 md:text-lg">
+          <div className="text-base leading-relaxed text-primary text-opacity-25 md:text-lg">
             <p>Quick and easy.</p>
             <p>
               Make your resume{' '}

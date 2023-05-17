@@ -1,10 +1,16 @@
 import Image from 'next/image';
 import { Button } from '../ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Menu } from 'lucide-react';
 
 const Header = () => {
   return (
     <header className="fixed w-full border-b-2 border-accent">
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between px-8 pb-2 pt-4 text-primary md:flex-row">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-8 pb-2 pt-4 text-primary md:flex-row">
         <a
           href="#"
           className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"
@@ -18,7 +24,7 @@ const Header = () => {
           Resumarkd
         </a>
 
-        <nav className="flex gap-x-4">
+        <nav className="hidden gap-x-4 lg:flex">
           <Button asChild variant={'link'}>
             <a className="" href="#">
               How it works
@@ -27,10 +33,31 @@ const Header = () => {
 
           <Button asChild variant={'link'}>
             <a className="" href="#">
-              About us
+              Why markdown?
             </a>
           </Button>
         </nav>
+
+        <Popover>
+          <PopoverTrigger className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary lg:hidden">
+            <Menu />
+          </PopoverTrigger>
+          <PopoverContent className="w-max lg:hidden" align="end">
+            <nav className="flex flex-col items-center justify-center gap-x-4">
+              <Button asChild variant={'link'}>
+                <a className="" href="#">
+                  How it works
+                </a>
+              </Button>
+
+              <Button asChild variant={'link'}>
+                <a className="" href="#">
+                  Why markdown?
+                </a>
+              </Button>
+            </nav>
+          </PopoverContent>
+        </Popover>
       </div>
     </header>
   );
