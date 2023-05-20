@@ -84,3 +84,9 @@
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
+
+/* Codemirror styles */
+.cm-scroller {
+  overflow: auto;
+  min-height: 350px;
+}

@@ -10,7 +10,7 @@ import { Menu } from 'lucide-react';
 const Header = () => {
   return (
     <header className="fixed w-full border-b-2 border-accent">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-8 pb-2 pt-4 text-primary md:flex-row">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-2 pb-2 pt-4 text-primary md:flex-row md:px-8">
         <a
           href="#"
           className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"

@@ -1,8 +1,11 @@
-import { Hero } from '@/components/page/Hero';
+import { Editor } from '@/components/page/Editor';
 
 export default function Home() {
   return (
-    <main className="pt-36 flex min-h-screen flex-col items-center justify-between">
+    <main className="min-h-screen pt-[4.75rem]">
+      <div className="flex max-w-7xl flex-col">
+        <Editor />
+      </div>
     </main>
   );
 }
