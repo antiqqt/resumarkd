@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 
 const Hero = () => {
   return (
-    <section className="pt-10 flex items-center justify-center md:pt-28">
+    <article className="pt-10 flex items-center justify-center md:pt-28">
       <div className="max-w-screen-md">
         <div className="flex flex-col gap-y-3 text-center md:gap-y-5">
           <h1 className="flex flex-col font-mono text-3xl font-bold text-primary md:text-5xl">
@@ -26,7 +26,7 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 export { Hero };

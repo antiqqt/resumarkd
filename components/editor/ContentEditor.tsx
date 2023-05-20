@@ -6,7 +6,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 
-const Editor = () => {
+const ContentEditor = () => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editorValue, SetEditorValue] = useState('');
 
@@ -41,12 +41,10 @@ const Editor = () => {
   }, []);
 
   return (
-    <article className="flex flex-col items-center p-8 pt-16">
-      <div
-        ref={editorRef}
-        className="round w-full max-w-2xl rounded-lg border-2 border-secondary"
-      ></div>
-    </article>
+    <div
+      ref={editorRef}
+      className="round w-full max-w-xl rounded-lg border-2 border-secondary"
+    ></div>
   );
 };
-export { Editor };
+export { ContentEditor };
