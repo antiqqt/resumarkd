@@ -14,7 +14,7 @@ const Hero = () => {
             <p>Quick and easy.</p>
             <p>
               Make your resume{' '}
-              <span className="bg-purple-200 px-1">stand out</span> from the
+              <span className="bg-violet-200 px-1">stand out</span> from the
               rest.
             </p>
           </div>

@@ -1,29 +1,35 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { EditorState } from '@codemirror/state';
-import { EditorView, keymap } from '@codemirror/view';
+import { EditorView, keymap, drawSelection } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 
-const ContentEditor = () => {
+interface Props {
+  editorValue: string;
+  setEditorValue: Dispatch<SetStateAction<string>>;
+}
+
+const ContentEditor = ({editorValue, setEditorValue}: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
-  const [editorValue, SetEditorValue] = useState('');
 
   useEffect(() => {
     if (!editorRef.current) return;
 
     const handleUpdate = EditorView.updateListener.of((view) => {
-      SetEditorValue(view.state.doc.toString());
+      setEditorValue(view.state.doc.toString());
     });
 
     const initialState = EditorState.create({
+      doc: editorValue,
       extensions: [
         keymap.of(defaultKeymap),
         markdown({
           base: markdownLanguage,
         }),
         EditorView.lineWrapping,
+        drawSelection(),
         handleUpdate,
       ],
     });
@@ -43,7 +49,7 @@ const ContentEditor = () => {
   return (
     <div
       ref={editorRef}
-      className="round w-full max-w-xl rounded-lg border-2 border-secondary"
+      className="round w-full max-w-2xl rounded-lg border-2 border-secondary"
     ></div>
   );
 };
