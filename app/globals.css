@@ -88,25 +88,20 @@
 /* Codemirror styling */
 .cm-scroller {
   overflow: auto;
-  min-height: 600px;
-
-  @media (max-width: 425px) {
-    min-height: 400px;
-  }
-
-  @media (max-width: 768px) {
-    min-height: 500px;
-  }
 }
 
 .cm-editor {
   .cm-content {
-    @apply p-4 font-mono text-primary;
+    @apply p-6 font-mono text-primary caret-primary;
   }
-}
 
-.cm-editor .cm-cursor {
-  @apply border-l-2 border-primary
+  .cm-line {
+    @apply p-0 leading-6;
+  }
+
+  .cm-cursor {
+    @apply border-l-2 border-primary;
+  }
 }
 
 .cm-editor.cm-focused {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, drawSelection } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
@@ -11,13 +11,15 @@ interface Props {
   setEditorValue: Dispatch<SetStateAction<string>>;
 }
 
-const ContentEditor = ({editorValue, setEditorValue}: Props) => {
+const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!editorRef.current) return;
 
-    const handleUpdate = EditorView.updateListener.of((view) => {
+    const handleUpdate = EditorView.updateListener.of((viewUpdate) => {
+      if (!viewUpdate.docChanged) return;
+
       setEditorValue(view.state.doc.toString());
     });
 
@@ -28,7 +30,6 @@ const ContentEditor = ({editorValue, setEditorValue}: Props) => {
         markdown({
           base: markdownLanguage,
         }),
-        EditorView.lineWrapping,
         drawSelection(),
         handleUpdate,
       ],
@@ -49,7 +50,7 @@ const ContentEditor = ({editorValue, setEditorValue}: Props) => {
   return (
     <div
       ref={editorRef}
-      className="round w-full max-w-2xl rounded-lg border-2 border-secondary"
+      className="round w-full max-w-2xl rounded-lg border-2 border-secondary leading-6"
     ></div>
   );
 };

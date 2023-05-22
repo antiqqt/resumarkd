@@ -1,7 +1,7 @@
 import './globals.css';
 import { Inter, Roboto_Mono } from 'next/font/google';
 import Providers from './providers';
-import { Header } from '@/components/layout/Header';
+import { Header } from '@/components/layout/header';
 import { cn } from '@/lib/utils';
 
 const fontSans = Inter({
