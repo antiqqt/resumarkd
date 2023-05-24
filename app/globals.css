@@ -90,26 +90,22 @@
   overflow: auto;
 }
 
-.cm-editor {
-  .cm-content {
-    @apply p-6 font-mono text-primary caret-primary;
-  }
-
-  .cm-line {
-    @apply p-0 leading-6;
-  }
-
-  .cm-cursor {
-    @apply border-l-2 border-primary;
-  }
-
-  .cm-tooltip-autocomplete {
-    li {
-      @apply flex h-6 items-center;
-    }
-  }
+.cm-editor .cm-content {
+  @apply p-6 font-mono text-primary caret-primary;
 }
 
-.cm-editor.cm-focused {
+.cm-editor .cm-line {
+  @apply p-0 leading-6;
+}
+
+.cm-editor .cm-cursor {
+  @apply border-l-2 border-primary;
+}
+
+.cm-editor .cm-tooltip-autocomplete {
   @apply outline-none;
+}
+
+.cm-editor .cm-tooltip-autocomplete li {
+  @apply flex h-6 items-center;
 }

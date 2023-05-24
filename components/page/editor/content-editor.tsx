@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
-import { EditorView, keymap, drawSelection } from '@codemirror/view';
+import { EditorView, keymap } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { autocompletion } from '@codemirror/autocomplete';
