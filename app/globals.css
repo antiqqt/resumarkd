@@ -102,6 +102,12 @@
   .cm-cursor {
     @apply border-l-2 border-primary;
   }
+
+  .cm-tooltip-autocomplete {
+    li {
+      @apply flex h-6 items-center;
+    }
+  }
 }
 
 .cm-editor.cm-focused {

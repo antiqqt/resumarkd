@@ -5,6 +5,8 @@ import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, drawSelection } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
+import { autocompletion } from '@codemirror/autocomplete';
+import { autocompletionSnippets } from '@/lib/completionSnippets';
 
 interface Props {
   editorValue: string;
@@ -30,8 +32,12 @@ const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
         markdown({
           base: markdownLanguage,
         }),
+        autocompletion(),
         drawSelection(),
         handleUpdate,
+        markdownLanguage.data.of({
+          autocomplete: autocompletionSnippets,
+        }),
       ],
     });
 
