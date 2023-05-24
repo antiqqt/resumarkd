@@ -33,7 +33,7 @@ const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
           base: markdownLanguage,
         }),
         autocompletion(),
-        drawSelection(),
+        EditorView.lineWrapping,
         handleUpdate,
         markdownLanguage.data.of({
           autocomplete: autocompletionSnippets,
