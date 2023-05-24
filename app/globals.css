@@ -102,10 +102,10 @@
   @apply border-l-2 border-primary;
 }
 
-.cm-editor .cm-tooltip-autocomplete {
-  @apply outline-none;
-}
-
 .cm-editor .cm-tooltip-autocomplete li {
   @apply flex h-6 items-center;
+}
+
+.cm-editor.cm-focused {
+  @apply outline-none;
 }
