@@ -21,16 +21,12 @@ const DesignEditor = ({ editorValue }: Props) => {
     .use(rehypeReact, {
       createElement,
       Fragment,
-      components: {
-        h1: (props: { children?: ReactNode }) => (
-          <div className="text-3xl">{props.children}</div>
-        ),
-      },
+      components: {},
     })
     .processSync(editorValue).result;
 
   return (
-    <div className="round w-full max-w-2xl rounded-lg border-2 border-secondary p-6 font-mono">
+    <div className="round prose prose-zinc w-full max-w-2xl rounded-lg border-2 border-secondary p-6 font-sans">
       {md}
     </div>
   );
