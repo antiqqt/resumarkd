@@ -16,7 +16,7 @@
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 240 4% 16%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 47.4% 11.2%;
@@ -90,8 +90,12 @@
   overflow: auto;
 }
 
+.cm-editor.cm-focused {
+  @apply outline-none;
+}
+
 .cm-editor .cm-content {
-  @apply p-3 font-mono text-primary caret-primary sm:p-6;
+  @apply p-3 font-mono text-primary caret-primary selection:bg-violet-200 sm:p-6;
 }
 
 .cm-editor .cm-line {
@@ -102,10 +106,18 @@
   @apply border-l-2 border-primary;
 }
 
-.cm-editor .cm-tooltip-autocomplete li {
-  @apply flex h-6 items-center;
+.cm-editor .cm-tooltip {
+  @apply rounded-md border border-border bg-popover text-popover-foreground shadow-md outline-none;
 }
 
-.cm-editor.cm-focused {
-  @apply outline-none;
+.cm-editor .cm-tooltip.cm-tooltip-autocomplete ul li {
+  @apply p-1 flex h-7 items-center font-sans text-sm border-0 border-transparent first-of-type:rounded-t-md last-of-type:rounded-b-md;
+}
+
+.cm-editor .cm-tooltip.cm-tooltip-autocomplete ul li[aria-selected] {
+  @apply bg-popover-foreground text-popover;
+}
+
+.cm-editor .cm-tooltip.cm-tooltip-autocomplete ul li .cm-completionDetail {
+  @apply not-italic;
 }

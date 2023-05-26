@@ -17,7 +17,8 @@ const Editor = () => {
   const [currentTab, setCurrentTab] = useState<Tabs[keyof Tabs]>('markdown');
   const [editorValue, setEditorValue] = useState('');
 
-  const switchTab = () => {
+  const switchTab = (e: globalThis.KeyboardEvent) => {
+    e.preventDefault();
     if (currentTab === TABS.MARKDOWN) setCurrentTab(TABS.DESIGN);
     if (currentTab === TABS.DESIGN) setCurrentTab(TABS.MARKDOWN);
   };
