@@ -107,11 +107,15 @@
 }
 
 .cm-editor .cm-tooltip {
-  @apply rounded-md border border-border bg-popover text-popover-foreground shadow-md outline-none;
+  @apply rounded-md border border-border bg-popover text-popover-foreground shadow-md outline-none overflow-hidden;
+}
+
+.cm-editor .cm-tooltip.cm-tooltip-autocomplete > ul {
+  @apply scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-border;
 }
 
 .cm-editor .cm-tooltip.cm-tooltip-autocomplete ul li {
-  @apply p-1 flex h-7 items-center font-sans text-sm border-0 border-transparent first-of-type:rounded-t-md last-of-type:rounded-b-md;
+  @apply p-1 flex h-7 items-center font-sans text-sm border-0 border-transparent first-of-type:rounded-tl-md last-of-type:rounded-bl-md;
 }
 
 .cm-editor .cm-tooltip.cm-tooltip-autocomplete ul li[aria-selected] {

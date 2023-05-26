@@ -47,13 +47,13 @@ const Editor = () => {
           <section className="w-56 justify-stretch gap-x-1 p-1">
             <TabsTrigger
               value={TABS.MARKDOWN}
-              className="flex-1 capitalize transition-colors hover:bg-slate-200 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=inactive]:hover:bg-slate-200"
             >
               {TABS.MARKDOWN}
             </TabsTrigger>
             <TabsTrigger
               value={TABS.DESIGN}
-              className="flex-1 capitalize transition-colors hover:bg-slate-200 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=inactive]:hover:bg-slate-200"
             >
               {TABS.DESIGN}
             </TabsTrigger>
