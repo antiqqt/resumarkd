@@ -23,7 +23,7 @@ export function autocompletionSnippets(context: CompletionContext) {
         type: 'text',
         detail: 'Strikethrough text',
       },
-      { label: 'code', apply: '``text``', type: 'text', detail: 'Code block' },
+      { label: 'code', apply: '```\ntext\n```', type: 'text', detail: 'Code block' },
 
       {
         label: 'img',
