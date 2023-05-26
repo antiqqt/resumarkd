@@ -26,7 +26,7 @@ const DesignEditor = ({ editorValue }: Props) => {
     .processSync(editorValue).result;
 
   return (
-    <div className="round prose prose-zinc w-full max-w-2xl rounded-lg border-2 border-secondary p-6 font-sans">
+    <div className="round prose prose-zinc min-h-[78vh] w-full rounded-lg border-2 border-secondary p-3 font-sans leading-6 sm:p-6">
       {md}
     </div>
   );

@@ -91,7 +91,7 @@
 }
 
 .cm-editor .cm-content {
-  @apply p-6 font-mono text-primary caret-primary;
+  @apply p-3 font-mono text-primary caret-primary sm:p-6;
 }
 
 .cm-editor .cm-line {

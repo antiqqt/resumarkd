@@ -2,7 +2,7 @@ import './globals.css';
 import { Inter, Roboto_Mono } from 'next/font/google';
 import Providers from './providers';
 import { Header } from '@/components/layout/header';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/cn';
 
 const fontSans = Inter({
   subsets: ['latin'],

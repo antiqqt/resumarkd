@@ -6,7 +6,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { autocompletion } from '@codemirror/autocomplete';
-import { autocompletionSnippets } from '@/lib/completionSnippets';
+import { autocompletionSnippets } from '@/components/page/editor/completionSnippets';
 
 interface Props {
   editorValue: string;
@@ -56,7 +56,7 @@ const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
   return (
     <div
       ref={editorRef}
-      className="round w-full max-w-2xl rounded-lg border-2 border-secondary leading-6"
+      className="min-h-[78vh] round w-full rounded-lg border-2 border-secondary leading-6"
     ></div>
   );
 };
