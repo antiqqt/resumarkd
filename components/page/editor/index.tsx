@@ -3,8 +3,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ContentEditor } from './content-editor';
 import { DesignEditor } from './design-editor';
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import { useKeyPress } from '@/lib/hooks/useKeyPress';
+import { EditorHints } from './editor-hints';
 
 const TABS = {
   MARKDOWN: 'markdown',
@@ -43,22 +44,26 @@ const Editor = () => {
       asChild
     >
       <article className="mx-auto flex w-full max-w-prose flex-col items-center gap-y-5 px-4 py-8 md:px-6">
-        <TabsList asChild>
-          <section className="w-56 justify-stretch gap-x-1 p-1">
-            <TabsTrigger
-              value={TABS.MARKDOWN}
-              className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=inactive]:hover:bg-slate-200"
-            >
-              {TABS.MARKDOWN}
-            </TabsTrigger>
-            <TabsTrigger
-              value={TABS.DESIGN}
-              className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=inactive]:hover:bg-slate-200"
-            >
-              {TABS.DESIGN}
-            </TabsTrigger>
-          </section>
-        </TabsList>
+        <section className='flex gap-6'>
+          <TabsList asChild>
+            <div className="w-56 justify-stretch gap-x-1 p-1">
+              <TabsTrigger
+                value={TABS.MARKDOWN}
+                className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                {TABS.MARKDOWN}
+              </TabsTrigger>
+              <TabsTrigger
+                value={TABS.DESIGN}
+                className="flex-1 capitalize transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                {TABS.DESIGN}
+              </TabsTrigger>
+            </div>
+          </TabsList>
+          <EditorHints />
+        </section>
+
         <TabsContent value={TABS.MARKDOWN} asChild>
           <section className="flex w-full max-w-prose justify-center">
             <ContentEditor

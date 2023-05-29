@@ -56,7 +56,7 @@ const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
   return (
     <div
       ref={editorRef}
-      className="min-h-[78vh] round w-full rounded-lg border-2 border-secondary leading-6"
+      className="min-h-[78vh] round w-full rounded-lg border-2 border-border leading-6"
     ></div>
   );
 };
