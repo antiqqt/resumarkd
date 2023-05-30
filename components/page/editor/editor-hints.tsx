@@ -1,4 +1,4 @@
-import { HelpCircle, Info } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -13,10 +13,17 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useEffect, useState } from 'react';
 
 const EditorHints = () => {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(true);
+  }, []);
+
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -42,17 +49,15 @@ const EditorHints = () => {
           <li>
             <p>
               Switch tab -{' '}
-              <span className="rounded bg-border p-0.5 font-mono">Shift</span> +{' '}
-              <span className="rounded bg-border p-0.5 font-mono">E</span>{' '}
+              <code className="rounded bg-border p-0.5 font-mono">Shift</code> +{' '}
+              <code className="rounded bg-border p-0.5 font-mono">E</code>{' '}
             </p>
           </li>
           <li>
             <p>
               Show autocomplete -{' '}
-              <span className="rounded bg-border p-0.5 font-mono">
-                Ctrl/Command
-              </span>{' '}
-              + <span className="rounded bg-border p-0.5 font-mono">Space</span>{' '}
+              <code className="rounded bg-border p-0.5">Ctrl/Command</code> +{' '}
+              <code className="rounded bg-border p-0.5">Space</code>{' '}
             </p>
           </li>
         </ul>
