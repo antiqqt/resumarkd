@@ -8,6 +8,10 @@
     height: 100%;
   }
 
+  html {
+    -webkit-print-color-adjust: exact;
+  }
+  
   :root {
     --background: 0 0% 100%;
     --foreground: 240 4% 16%;

@@ -6,7 +6,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { autocompletion } from '@codemirror/autocomplete';
-import { autocompletionSnippets } from '@/components/page/editor/completionSnippets';
+import { autocompletionSnippets } from '@/components/page/editor/content/completion-snippets';
 
 interface Props {
   editorValue: string;

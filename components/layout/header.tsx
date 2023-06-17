@@ -6,17 +6,18 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Menu } from 'lucide-react';
+import BannerIcon from "../../public/icon.svg";
 
 const Header = () => {
   return (
     <header className="fixed w-full border-b-2 border-border bg-inherit z-10">
-      <div className="relative z-[1000] mx-auto flex max-w-screen-xl items-center justify-between px-2 pb-2 pt-4 text-primary md:flex-row md:px-8">
+      <div className="relative mx-auto flex max-w-screen-xl items-center justify-between px-2 pb-2 pt-4 text-primary md:flex-row md:px-8">
         <a
           href="#"
           className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"
         >
           <Image
-            src="./icon.svg"
+            src={BannerIcon}
             width={28}
             height={28}
             alt="Resumarkd icon"
