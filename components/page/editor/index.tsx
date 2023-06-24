@@ -3,9 +3,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ContentEditor } from './content';
 import { DesignEditor } from './design';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useKeyPress } from '@/hooks/useKeyPress';
 import { EditorHints } from './content/editor-hints';
+import { EditorContext } from '@/components/providers/editor-provider';
 
 const TABS = {
   MARKDOWN: 'markdown',
@@ -16,7 +17,7 @@ type Tabs = typeof TABS;
 
 const Editor = () => {
   const [currentTab, setCurrentTab] = useState<Tabs[keyof Tabs]>('markdown');
-  const [editorValue, setEditorValue] = useState('');
+  const { editor, setEditor } = useContext(EditorContext);
 
   const switchTab = (e: globalThis.KeyboardEvent) => {
     e.preventDefault();
@@ -44,7 +45,7 @@ const Editor = () => {
       asChild
     >
       <article className="mx-auto flex w-full max-w-prose flex-col items-center gap-y-5 px-4 py-8 md:px-6">
-        <section className='flex gap-6'>
+        <section className="flex gap-6">
           <TabsList asChild>
             <div className="w-56 justify-stretch gap-x-1 p-1">
               <TabsTrigger
@@ -66,15 +67,12 @@ const Editor = () => {
 
         <TabsContent value={TABS.MARKDOWN} asChild>
           <section className="flex w-full max-w-prose justify-center">
-            <ContentEditor
-              editorValue={editorValue}
-              setEditorValue={setEditorValue}
-            />
+            <ContentEditor editor={editor} setEditor={setEditor} />
           </section>
         </TabsContent>
         <TabsContent value={TABS.DESIGN} asChild>
           <section className="flex w-full justify-center">
-            <DesignEditor editorValue={editorValue} />
+            <DesignEditor editor={editor} />
           </section>
         </TabsContent>
       </article>

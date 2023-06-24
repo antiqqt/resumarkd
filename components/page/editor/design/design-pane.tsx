@@ -7,33 +7,46 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 const PDF_NAME = 'pdf_resume.pdf';
 
-const DesignPane = () => {
+interface Props {
+  editor: string;
+}
+
+const DesignPane = ({ editor }: Props) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   async function handleDownloadPdf() {
     try {
-      const response = await fetch('http://localhost:3000/api/pdf', {
+      setIsDownloading(true);
+      const response = await fetch('/api/pdf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/pdf',
         },
+        body: JSON.stringify({ editor }),
       });
+
       const blob = await response.blob();
       downloadBlob(blob);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsDownloading(false);
     }
   }
 
   function downloadBlob(blob: Blob) {
-    const url = URL.createObjectURL(blob);
+    const blobURL = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
+    a.href = blobURL;
     a.download = PDF_NAME;
 
     a.click();
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(blobURL);
     a.remove();
   }
 
@@ -49,7 +62,20 @@ const DesignPane = () => {
             </SheetDescription>
           </SheetHeader>
           <SheetFooter>
-            <Button onClick={handleDownloadPdf}>Download PDF</Button>
+            <Button
+              disabled={isDownloading}
+              onClick={handleDownloadPdf}
+              className="w-40"
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                <>Download as PDF</>
+              )}
+            </Button>
           </SheetFooter>
         </div>
       </SheetContent>

@@ -9,11 +9,11 @@ import { autocompletion } from '@codemirror/autocomplete';
 import { autocompletionSnippets } from '@/components/page/editor/content/completion-snippets';
 
 interface Props {
-  editorValue: string;
-  setEditorValue: Dispatch<SetStateAction<string>>;
+  editor: string;
+  setEditor: Dispatch<SetStateAction<string>>;
 }
 
-const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
+const ContentEditor = ({ editor, setEditor }: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,11 +22,11 @@ const ContentEditor = ({ editorValue, setEditorValue }: Props) => {
     const handleUpdate = EditorView.updateListener.of((viewUpdate) => {
       if (!viewUpdate.docChanged) return;
 
-      setEditorValue(view.state.doc.toString());
+      setEditor(view.state.doc.toString());
     });
 
     const initialState = EditorState.create({
-      doc: editorValue,
+      doc: editor,
       extensions: [
         keymap.of(defaultKeymap),
         markdown({
