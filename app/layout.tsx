@@ -1,7 +1,6 @@
 import './globals.css';
 import { Inter, Roboto_Mono } from 'next/font/google';
 import Providers from './providers';
-import { Header } from '@/components/layout/header';
 import { cn } from '@/lib/cn';
 
 const fontSans = Inter({
@@ -35,7 +34,6 @@ export default function RootLayout({
           fontMono.variable
         )}
       >
-        <Header />
         <Providers> {children} </Providers>
       </body>
     </html>

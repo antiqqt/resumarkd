@@ -1,12 +1,11 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ContentEditor } from './content';
-import { DesignEditor } from './design';
-import { useContext, useState } from 'react';
 import { useKeyPress } from '@/hooks/useKeyPress';
+import { useState } from 'react';
+import { ContentEditor } from './content';
 import { EditorHints } from './content/editor-hints';
-import { EditorContext } from '@/components/providers/editor-provider';
+import { DesignEditor } from './design';
 
 const TABS = {
   MARKDOWN: 'markdown',
@@ -17,7 +16,7 @@ type Tabs = typeof TABS;
 
 const Editor = () => {
   const [currentTab, setCurrentTab] = useState<Tabs[keyof Tabs]>('markdown');
-  const { editor, setEditor } = useContext(EditorContext);
+  const [editor, setEditor] = useState('');
 
   const switchTab = (e: globalThis.KeyboardEvent) => {
     e.preventDefault();

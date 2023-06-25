@@ -76,6 +76,14 @@ module.exports = {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-roboto-mono)'],
       },
+
+      // a4 size for PDF display
+      width: {
+        a4: '210mm',
+      },
+      minHeight: {
+        a4: '297mm',
+      },
     },
   },
   plugins: [

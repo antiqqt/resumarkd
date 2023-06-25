@@ -1,6 +1,5 @@
 'use client';
 
-import { EditorProvider } from '@/components/providers/editor-provider';
 import type { ReactNode } from 'react';
 
 type Props = {
@@ -8,6 +7,6 @@ type Props = {
 };
 
 const Providers = ({ children }: Props) => {
-  return <EditorProvider>{children}</EditorProvider>;
+  return <>{children}</>;
 };
 export default Providers;

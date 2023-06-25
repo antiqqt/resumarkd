@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, createElement, useRef } from 'react';
+import { Fragment, createElement } from 'react';
 import rehypeReact from 'rehype-react';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
