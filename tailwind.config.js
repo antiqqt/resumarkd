@@ -81,6 +81,9 @@ module.exports = {
       width: {
         a4: '210mm',
       },
+      maxWidth: {
+        a4: '210mm',
+      },
       minHeight: {
         a4: '297mm',
       },
