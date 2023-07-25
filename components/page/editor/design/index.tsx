@@ -28,7 +28,7 @@ const DesignEditor = ({ editor }: Props) => {
 
   return (
     <>
-      <div className="round prose prose-zinc max-w-none min-h-[80vh] w-full rounded-lg border-2 border-border p-3 font-sans leading-6 sm:p-6">
+      <div className="round break-words prose prose-zinc max-w-none min-h-[80vh] w-full rounded-lg border-2 border-border p-3 font-sans leading-6 sm:p-6">
         {md}
       </div>
 
