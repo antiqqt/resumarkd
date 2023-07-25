@@ -7,10 +7,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import { MimeTypes } from '@/lib/constants';
 import { Loader2 } from 'lucide-react';
+import { HTTP_METHODS } from 'next/dist/server/web/http';
 import { useState } from 'react';
 
-const PDF_NAME = 'pdf_resume.pdf';
+const INIT_PDF_NAME = 'pdf_resume.pdf';
+
+type ApiPDFResponseBody = {
+  data: number[];
+  type: string;
+};
 
 interface Props {
   editor: string;
@@ -23,14 +30,21 @@ const DesignPane = ({ editor }: Props) => {
     try {
       setIsDownloading(true);
       const response = await fetch('/api/pdf', {
-        method: 'POST',
+        method: HTTP_METHODS[3],
         headers: {
-          'Content-Type': 'application/pdf',
+          'Content-Type': MimeTypes.JSON,
         },
         body: JSON.stringify({ editor }),
       });
 
-      const blob = await response.blob();
+      if (!response.ok) throw new Error('Download failed');
+
+      const { data } = (await response.json()) as ApiPDFResponseBody;
+      const bufferSource = new Uint8Array(data);
+      const blob = new Blob([bufferSource], {
+        type: MimeTypes.PDF,
+      });
+
       downloadBlob(blob);
     } catch (error) {
       console.error(error);
@@ -43,7 +57,7 @@ const DesignPane = ({ editor }: Props) => {
     const blobURL = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = blobURL;
-    a.download = PDF_NAME;
+    a.download = INIT_PDF_NAME;
 
     a.click();
     URL.revokeObjectURL(blobURL);
@@ -65,12 +79,11 @@ const DesignPane = ({ editor }: Props) => {
             <Button
               disabled={isDownloading}
               onClick={handleDownloadPdf}
-              className="w-40"
             >
               {isDownloading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
+                  This might take a while
                 </>
               ) : (
                 <>Download as PDF</>
