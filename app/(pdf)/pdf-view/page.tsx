@@ -33,8 +33,9 @@ export default function PDFViewPage() {
           id="textarea"
           value={editor}
           onChange={(event) => setEditor(event.target.value)}
-          className="opacity-0 absolute"
+          className="absolute opacity-0"
         ></textarea>
+
         <article
           id="pdf"
           className="prose prose-zinc w-a4 max-w-none rounded-lg p-6 font-sans"

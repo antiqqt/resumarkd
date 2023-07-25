@@ -43,7 +43,7 @@ const Editor = () => {
       }}
       asChild
     >
-      <article className="mx-auto flex w-full max-w-a4 flex-col items-center gap-y-5 px-4 py-8 md:px-6">
+      <article className="mx-auto flex w-full max-w-a4 flex-col items-center gap-y-5 px-4 md:px-6">
         <section className="flex gap-6">
           <TabsList asChild>
             <div className="w-56 justify-stretch gap-x-1 p-1">
