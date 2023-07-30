@@ -10,7 +10,7 @@ import {
 import { MimeTypes } from '@/lib/constants';
 import { Loader2 } from 'lucide-react';
 import { HTTP_METHODS } from 'next/dist/server/web/http';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const INIT_PDF_NAME = 'pdf_resume.pdf';
 
@@ -24,11 +24,12 @@ interface Props {
 }
 
 const DesignPane = ({ editor }: Props) => {
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPDFDownloading, setIsPDFDownloading] = useState(false);
 
   async function handleDownloadPdf() {
     try {
-      setIsDownloading(true);
+      setIsPDFDownloading(true);
       const response = await fetch('/api/pdf', {
         method: HTTP_METHODS[3],
         headers: {
@@ -49,7 +50,7 @@ const DesignPane = ({ editor }: Props) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setIsDownloading(false);
+      setIsPDFDownloading(false);
     }
   }
 
@@ -64,9 +65,25 @@ const DesignPane = ({ editor }: Props) => {
     a.remove();
   }
 
+  useEffect(() => setIsModalOpen(true), []);
+
   return (
-    <Sheet defaultOpen modal={false}>
-      <SheetContent position="bottom" size="sm" disableBackdrop>
+    <Sheet
+      modal={false}
+      open={isModalOpen}
+      onOpenChange={(open) => {
+        console.log('open', open);
+
+        setIsModalOpen(open);
+      }}
+    >
+      <SheetContent
+        side="bottom"
+        // Disable modal close on all "onClickOutside"-like handlers
+        // See: https://www.radix-ui.com/docs/primitives/components/dialog#content
+        onPointerDownOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <div className="mx-auto max-w-screen-xl">
           <SheetHeader>
             <SheetTitle>Edit profile</SheetTitle>
@@ -76,11 +93,8 @@ const DesignPane = ({ editor }: Props) => {
             </SheetDescription>
           </SheetHeader>
           <SheetFooter>
-            <Button
-              disabled={isDownloading}
-              onClick={handleDownloadPdf}
-            >
-              {isDownloading ? (
+            <Button disabled={isPDFDownloading} onClick={handleDownloadPdf}>
+              {isPDFDownloading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   This might take a while

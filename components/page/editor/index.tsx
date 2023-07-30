@@ -39,6 +39,7 @@ const Editor = () => {
         const isValidTab = value === TABS.MARKDOWN || value === TABS.DESIGN;
         if (!isValidTab) return;
 
+        console.log('🚀 setCurrentTab', value);
         setCurrentTab(value);
       }}
       asChild

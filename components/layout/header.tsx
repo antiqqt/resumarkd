@@ -10,7 +10,7 @@ import BannerIcon from "../../public/icon.svg";
 
 const Header = () => {
   return (
-    <header className="fixed w-full border-b-2 border-border bg-inherit z-10">
+    <header className="fixed w-full border-b border-border bg-inherit z-10">
       <div className="relative mx-auto flex max-w-screen-xl items-center justify-between px-2 pb-2 pt-4 text-primary md:flex-row md:px-8">
         <a
           href="#"
