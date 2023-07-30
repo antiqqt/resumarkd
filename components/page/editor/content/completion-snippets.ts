@@ -23,7 +23,12 @@ export function autocompletionSnippets(context: CompletionContext) {
         type: 'text',
         detail: 'Strikethrough text',
       },
-      { label: 'code', apply: '```\ntext\n```', type: 'text', detail: 'Code block' },
+      {
+        label: 'code',
+        apply: '```\ntext\n```',
+        type: 'text',
+        detail: 'Code block',
+      },
 
       {
         label: 'img',
@@ -38,8 +43,12 @@ export function autocompletionSnippets(context: CompletionContext) {
         type: 'property',
         detail: 'Quote block',
       },
-      { label: 'hr', apply: '---', type: 'property', detail: 'Horizontal rule' },
-
+      {
+        label: 'hr',
+        apply: '---',
+        type: 'property',
+        detail: 'Horizontal rule',
+      },
       {
         label: 'table',
         apply: `| a | b  |  c |  d  |\n| - | :- | -: | :-: |`,
