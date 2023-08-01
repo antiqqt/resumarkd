@@ -2,9 +2,9 @@ import { env } from '@/lib/env';
 import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   try {
-    const { editor } = (await request.json()) as { editor: string };
+    const { editorContent } = (await request.json()) as { editorContent: string };
 
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
@@ -13,7 +13,7 @@ export async function POST(request: Request, response: Response) {
 
     const textareaSelector = '#textarea';
     await page.waitForSelector(textareaSelector);
-    await page.type(textareaSelector, editor);
+    await page.type(textareaSelector, editorContent);
 
     const pdfBuffer = await page.pdf({ format: 'A4' });
     await browser.close();

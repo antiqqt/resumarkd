@@ -20,10 +20,10 @@ type ApiPDFResponseBody = {
 };
 
 interface Props {
-  editor: string;
+  editorContent: string;
 }
 
-const DesignPane = ({ editor }: Props) => {
+const DesignPane = ({ editorContent }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPDFDownloading, setIsPDFDownloading] = useState(false);
 
@@ -35,7 +35,7 @@ const DesignPane = ({ editor }: Props) => {
         headers: {
           'Content-Type': MimeTypes.JSON,
         },
-        body: JSON.stringify({ editor }),
+        body: JSON.stringify({ editorContent }),
       });
 
       if (!response.ok) throw new Error('Download failed');

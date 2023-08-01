@@ -3,36 +3,32 @@
 import { Fragment, createElement } from 'react';
 import rehypeReact from 'rehype-react';
 import rehypeSanitize from 'rehype-sanitize';
-import remarkGfm from 'remark-gfm';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype/lib';
+import rehypeParse from 'rehype-parse';
 import { unified } from 'unified';
 import { DesignPane } from './design-pane';
 
 interface Props {
-  editor: string;
+  editorContent: string;
 }
 
-const DesignEditor = ({ editor }: Props) => {
-  const md = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkRehype)
+const DesignEditor = ({ editorContent }: Props) => {
+  const html = unified()
+    .use(rehypeParse, { fragment: true })
     .use(rehypeSanitize)
     .use(rehypeReact, {
       createElement,
       Fragment,
       components: {},
     })
-    .processSync(editor).result;
+    .processSync(editorContent).result;
 
   return (
     <>
-      <div className="round break-words prose prose-zinc max-w-none min-h-[80vh] w-full rounded-lg border border-border p-3 font-sans leading-6 sm:p-6">
-        {md}
+      <div className="round break-words prose prose-zinc max-w-none min-h-[79vh] w-full rounded-lg border border-border p-3 font-sans leading-6 sm:p-6">
+        {html}
       </div>
 
-      <DesignPane editor={editor} />
+      <DesignPane editorContent={editorContent} />
     </>
   );
 };

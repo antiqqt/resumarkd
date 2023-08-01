@@ -16,7 +16,7 @@ type Tabs = typeof TABS;
 
 const Editor = () => {
   const [currentTab, setCurrentTab] = useState<Tabs[keyof Tabs]>('markdown');
-  const [editor, setEditor] = useState('');
+  const [editorContent, setEditorContent] = useState('');
 
   const switchTab = (e: globalThis.KeyboardEvent) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ const Editor = () => {
       }}
       asChild
     >
-      <article className="mx-auto flex w-full max-w-a4 flex-col items-center gap-y-5 px-4 md:px-6">
+      <article className="mx-auto flex w-full max-w-a4 flex-col items-center gap-y-4 px-4 md:px-6">
         <section className="flex gap-6">
           <TabsList asChild>
             <div className="w-56 justify-stretch gap-x-1 p-1">
@@ -66,12 +66,15 @@ const Editor = () => {
 
         <TabsContent value={TABS.MARKDOWN} asChild>
           <section className="flex w-full justify-center">
-            <ContentEditor editor={editor} setEditor={setEditor} />
+            <ContentEditor
+              editorContent={editorContent}
+              setEditorContent={setEditorContent}
+            />
           </section>
         </TabsContent>
         <TabsContent value={TABS.DESIGN} asChild>
           <section className="flex w-full justify-center">
-            <DesignEditor editor={editor} />
+            <DesignEditor editorContent={editorContent} />
           </section>
         </TabsContent>
       </article>

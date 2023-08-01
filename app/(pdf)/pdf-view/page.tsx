@@ -3,27 +3,23 @@
 import { useState } from 'react';
 
 import { Fragment, createElement } from 'react';
+import rehypeParse from 'rehype-parse/lib';
 import rehypeReact from 'rehype-react';
 import rehypeSanitize from 'rehype-sanitize';
-import remarkGfm from 'remark-gfm';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype/lib';
 import { unified } from 'unified';
 
 export default function PDFViewPage() {
-  const [editor, setEditor] = useState('');
+  const [editorContent, setEditorContent] = useState('');
 
-  const md = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkRehype)
+  const html = unified()
+    .use(rehypeParse, { fragment: true })
     .use(rehypeSanitize)
     .use(rehypeReact, {
       createElement,
       Fragment,
       components: {},
     })
-    .processSync(editor).result;
+    .processSync(editorContent).result;
 
   return (
     <main className="min-h-screen">
@@ -31,8 +27,8 @@ export default function PDFViewPage() {
         <textarea
           name="textarea"
           id="textarea"
-          value={editor}
-          onChange={(event) => setEditor(event.target.value)}
+          value={editorContent}
+          onChange={(event) => setEditorContent(event.target.value)}
           className="absolute opacity-0"
         ></textarea>
 
@@ -40,7 +36,7 @@ export default function PDFViewPage() {
           id="pdf"
           className="prose prose-zinc w-a4 max-w-none rounded-lg p-6 font-sans"
         >
-          {md}
+          {html}
         </article>
       </div>
     </main>
