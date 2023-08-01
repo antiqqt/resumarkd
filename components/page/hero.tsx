@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 
 const Hero = () => {
   return (
-    <article className="pt-10 flex items-center justify-center md:pt-28">
+    <article className="flex items-center justify-center">
       <div className="max-w-screen-md">
         <div className="flex flex-col gap-y-3 text-center md:gap-y-5">
           <h1 className="flex flex-col font-mono text-3xl font-bold text-primary md:text-5xl">
@@ -13,9 +13,11 @@ const Hero = () => {
           <div className="text-base leading-relaxed text-primary text-opacity-25 md:text-lg">
             <p>Quick and easy.</p>
             <p>
-              Make your resume{' '}
-              <span className="bg-violet-200 px-1">stand out</span> from the
-              rest.
+              Make your resume
+              <span className="inline-flex bg-violet-200 px-1 mx-1">
+                stand out
+              </span>
+              from the rest.
             </p>
           </div>
         </div>
