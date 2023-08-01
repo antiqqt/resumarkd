@@ -45,19 +45,29 @@ const EditorHints = () => {
           Keyboard shortcuts
         </h3>
 
-        <ul className="mt-2 flex flex-col gap-y-1">
-          <li>
+        <ul className="mt-2 flex flex-col">
+          <li className="py-2 border-t border-border">
             <p>
-              Switch tab -{' '}
-              <code className="rounded bg-border p-0.5 font-mono">Shift</code> +{' '}
-              <code className="rounded bg-border p-0.5 font-mono">E</code>{' '}
+              Switch tab -
+              <code className="inline-flex rounded bg-border py-1 px-2 font-mono mx-1">
+                Shift
+              </code>
+              +
+              <code className="inline-flex rounded bg-border py-1 px-2 font-mono mx-1">
+                E
+              </code>
             </p>
           </li>
-          <li>
+          <li className="last:pb-0 py-2 border-t border-border">
             <p>
-              Show autocomplete -{' '}
-              <code className="rounded bg-border p-0.5">Ctrl/Command</code> +{' '}
-              <code className="rounded bg-border p-0.5">Space</code>{' '}
+              Show autocomplete -
+              <code className="inline-flex rounded bg-border py-1 px-2 mx-1">
+                Ctrl/Command
+              </code>
+              +
+              <code className="inline-flex rounded bg-border py-1 px-2 mx-1">
+                Space
+              </code>
             </p>
           </li>
         </ul>
