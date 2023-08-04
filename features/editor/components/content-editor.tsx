@@ -4,6 +4,8 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { type Dispatch, type SetStateAction } from 'react';
 import { ContentEditorMenu } from './content-editor-menu';
+import Underline from '@tiptap/extension-underline';
+import Link from '@tiptap/extension-link';
 
 interface Props {
   editorContent: string;
@@ -12,7 +14,7 @@ interface Props {
 
 const ContentEditor = ({ editorContent, setEditorContent }: Props) => {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, Underline, Link],
     content: editorContent,
     onUpdate: ({ editor }) => {
       setEditorContent(editor.getHTML());
@@ -24,7 +26,7 @@ const ContentEditor = ({ editorContent, setEditorContent }: Props) => {
   return (
     <section className="selection:bg-violet-200 flex flex-col w-full max-w-none min-h-[80.5vh] round rounded-lg border border-border font-sans">
       <header className="border-b border-border">
-        <ContentEditorMenu></ContentEditorMenu>
+        <ContentEditorMenu editor={editor}></ContentEditorMenu>
       </header>
 
       <EditorContent

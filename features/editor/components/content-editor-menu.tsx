@@ -26,19 +26,36 @@ import {
 } from 'lucide-react';
 import { ReactNode } from 'react';
 
-import ThreeColumnsIcon from './../assets/three-columns.svg';
+import { cn } from '@/lib/cn';
+import type { Editor } from '@tiptap/react';
 import Image from 'next/image';
+import ThreeColumnsIcon from './../assets/three-columns.svg';
 
 type MenuButtonProps = {
   children: ReactNode;
   tooltip: string;
+  isActive?: boolean;
+  onClick?: () => void;
 };
 
-const MenuButton = ({ tooltip, children }: MenuButtonProps) => (
+const MenuButton = ({
+  tooltip,
+  children,
+  isActive,
+  onClick,
+}: MenuButtonProps) => (
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button type="button" variant={'ghost'} className="p-2 rounded-none">
+        <Button
+          type="button"
+          variant={'ghost'}
+          className={cn(
+            'p-2 rounded-none',
+            `${isActive ? 'bg-violet-200 hover:bg-violet-200' : ''}`,
+          )}
+          onClick={onClick}
+        >
           {children}
         </Button>
       </TooltipTrigger>
@@ -49,9 +66,30 @@ const MenuButton = ({ tooltip, children }: MenuButtonProps) => (
   </TooltipProvider>
 );
 
-type ContentEditorMenuProps = {};
+type ContentEditorMenuProps = {
+  editor: Editor | null;
+};
 
-const ContentEditorMenu = (props: ContentEditorMenuProps) => {
+const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
+  if (!editor) return null;
+
+  const { bold, italic, underline } = {
+    bold: {
+      isActive: editor.isActive('bold'),
+      toggle: editor.chain().focus().toggleBold().run,
+    },
+
+    italic: {
+      isActive: editor.isActive('italic'),
+      toggle: editor.chain().focus().toggleItalic().run,
+    },
+
+    underline: {
+      isActive: editor.isActive('underline'),
+      toggle: editor.chain().focus().toggleUnderline().run,
+    },
+  };
+
   return (
     <ul className="flex">
       <li className="flex items-center">
@@ -66,15 +104,27 @@ const ContentEditorMenu = (props: ContentEditorMenuProps) => {
       <li className="self-stretch w-px bg-border"></li>
 
       <li className="flex items-center">
-        <MenuButton tooltip="Bold">
+        <MenuButton
+          tooltip="Bold"
+          isActive={bold.isActive}
+          onClick={bold.toggle}
+        >
           <Bold />
         </MenuButton>
 
-        <MenuButton tooltip="Italic">
+        <MenuButton
+          tooltip="Italic"
+          isActive={italic.isActive}
+          onClick={italic.toggle}
+        >
           <Italic />
         </MenuButton>
 
-        <MenuButton tooltip="Underline">
+        <MenuButton
+          tooltip="Underline"
+          isActive={underline.isActive}
+          onClick={underline.toggle}
+        >
           <Underline />
         </MenuButton>
 
@@ -139,6 +189,7 @@ const ContentEditorMenu = (props: ContentEditorMenuProps) => {
 
         <MenuButton tooltip="Three Columns">
           <Image
+            priority
             src={ThreeColumnsIcon}
             alt="Three columns"
             className="w-6 aspect-square"

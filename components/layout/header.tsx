@@ -23,13 +23,7 @@ const Header = () => {
         <nav className="hidden gap-x-4 lg:flex">
           <Button asChild variant={'link'}>
             <a className="" href="#">
-              How it works
-            </a>
-          </Button>
-
-          <Button asChild variant={'link'}>
-            <a className="" href="#">
-              Why markdown?
+              Features
             </a>
           </Button>
         </nav>
@@ -42,13 +36,7 @@ const Header = () => {
             <nav className="flex flex-col items-center justify-center gap-x-4">
               <Button asChild variant={'link'}>
                 <a className="" href="#">
-                  How it works
-                </a>
-              </Button>
-
-              <Button asChild variant={'link'}>
-                <a className="" href="#">
-                  Why markdown?
+                  Features
                 </a>
               </Button>
             </nav>
