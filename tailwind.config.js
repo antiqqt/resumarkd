@@ -6,6 +6,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './features/**/*.{ts,tsx}',
   ],
   theme: {
     container: {
@@ -72,8 +73,8 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
 
-       // Next/font variables
-       fontFamily: {
+      // Next/font variables
+      fontFamily: {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-roboto-mono)'],
       },

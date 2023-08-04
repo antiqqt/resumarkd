@@ -24,9 +24,9 @@ const DesignEditor = ({ editorContent }: Props) => {
 
   return (
     <>
-      <div className="round break-words prose prose-zinc max-w-none min-h-[79vh] w-full rounded-lg border border-border p-3 font-sans leading-6 sm:p-6">
+      <section className="round break-words prose prose-zinc max-w-none min-h-[80.5vh] w-full rounded-lg border border-border p-6 font-sans leading-6">
         {html}
-      </div>
+      </section>
 
       <DesignPane editorContent={editorContent} />
     </>

@@ -1,11 +1,11 @@
 'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useKeyPress } from '@/hooks/useKeyPress';
 import { useState } from 'react';
-import { ContentEditor } from './content';
 import { EditorHints } from './editor-hints';
-import { DesignEditor } from './design';
+import { ContentEditor } from './content-editor';
+import { DesignEditor } from './design-editor';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const TABS = {
   MARKDOWN: 'markdown',

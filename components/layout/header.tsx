@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Menu } from 'lucide-react';
-import BannerIcon from "../../public/icon.svg";
+import BannerIcon from '../../public/icon.svg';
 
 const Header = () => {
   return (
@@ -16,12 +16,7 @@ const Header = () => {
           href="#"
           className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"
         >
-          <Image
-            src={BannerIcon}
-            width={28}
-            height={28}
-            alt="Resumarkd icon"
-          ></Image>
+          <Image src={BannerIcon} width={28} height={28} alt="Resumarkd icon" />
           Resumarkd
         </a>
 
