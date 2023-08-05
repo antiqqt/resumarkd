@@ -2,6 +2,7 @@ import { cn } from '@/lib/cn';
 import { Inter, Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import Providers from './providers';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontSans = Inter({
   subsets: ['latin'],
@@ -35,6 +36,7 @@ export default function RootLayout({
         )}
       >
         <Providers> {children} </Providers>
+        <Toaster/>
       </body>
     </html>
   );

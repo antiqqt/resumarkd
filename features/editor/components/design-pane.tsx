@@ -7,16 +7,28 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import { useToast } from '@/components/ui/use-toast';
 import { MimeTypes } from '@/lib/constants';
 import { Loader2 } from 'lucide-react';
 import { HTTP_METHODS } from 'next/dist/server/web/http';
 import { useEffect, useState } from 'react';
 
 const INIT_PDF_NAME = 'pdf_resume.pdf';
+const DOWNLOAD_ERROR_DESCRIPTION = 'Download failed';
 
 type ApiPDFResponseBody = {
   data: number[];
   type: string;
+} & {
+  error: {
+    message: string;
+    status: number;
+  };
+};
+
+type DownloadErrorData = {
+  title?: string;
+  description?: string;
 };
 
 interface Props {
@@ -26,6 +38,17 @@ interface Props {
 const DesignPane = ({ editorContent }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPDFDownloading, setIsPDFDownloading] = useState(false);
+  const { toast } = useToast();
+
+  const showError = ({
+    title = 'Server error',
+    description = 'Something went wrong',
+  }: DownloadErrorData = {}) => {
+    toast({
+      title,
+      description,
+    });
+  };
 
   async function handleDownloadPdf() {
     try {
@@ -37,10 +60,13 @@ const DesignPane = ({ editorContent }: Props) => {
         },
         body: JSON.stringify({ editorContent }),
       });
+      if (!response.ok) throw new Error(DOWNLOAD_ERROR_DESCRIPTION);
 
-      if (!response.ok) throw new Error('Download failed');
+      const { data, error } = (await response.json()) as ApiPDFResponseBody;
+      if (error) {
+        throw new Error(DOWNLOAD_ERROR_DESCRIPTION);
+      }
 
-      const { data } = (await response.json()) as ApiPDFResponseBody;
       const bufferSource = new Uint8Array(data);
       const blob = new Blob([bufferSource], {
         type: MimeTypes.PDF,
@@ -49,6 +75,8 @@ const DesignPane = ({ editorContent }: Props) => {
       downloadBlob(blob);
     } catch (error) {
       console.error(error);
+
+      showError();
     } finally {
       setIsPDFDownloading(false);
     }
