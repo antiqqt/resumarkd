@@ -25,9 +25,11 @@ const ContentEditor = ({ editorContent, setEditorContent }: Props) => {
 
   return (
     <section className="selection:bg-violet-200 flex flex-col w-full max-w-none min-h-[80.5vh] round rounded-lg border border-border font-sans">
-      <header className="border-b border-border">
-        <ContentEditorMenu editor={editor}></ContentEditorMenu>
-      </header>
+      {editor && (
+        <header className="border-b border-border">
+          <ContentEditorMenu editor={editor}></ContentEditorMenu>
+        </header>
+      )}
 
       <EditorContent
         editor={editor}

@@ -67,12 +67,10 @@ const MenuButton = ({
 );
 
 type ContentEditorMenuProps = {
-  editor: Editor | null;
+  editor: Editor;
 };
 
 const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
-  if (!editor) return null;
-
   const { bold, italic, underline } = {
     bold: {
       isActive: editor.isActive('bold'),
