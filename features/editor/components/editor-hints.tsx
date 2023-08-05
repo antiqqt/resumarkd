@@ -1,4 +1,4 @@
-import { Info } from 'lucide-react';
+import { HelpCircle, Info } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,7 +29,7 @@ const EditorHints = () => {
           <TooltipTrigger asChild>
             <PopoverTrigger asChild>
               <Button variant="outline" className="w-10 rounded-full p-0">
-                <Info className="aspect-square w-full" />
+                <HelpCircle className="aspect-square w-full" />
                 <span className="sr-only">Show hotkeys</span>
               </Button>
             </PopoverTrigger>
