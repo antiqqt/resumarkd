@@ -19,7 +19,9 @@ export async function POST(request: Request) {
     await browser.close();
 
     return NextResponse.json(pdfBuffer);
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json({
       error: {
         message: 'Internal Server Error',
