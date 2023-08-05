@@ -14,7 +14,7 @@ const Header = () => {
       <div className="relative mx-auto flex max-w-screen-xl items-center justify-between px-2 pb-2 pt-4 text-primary md:flex-row md:px-8">
         <a
           href="#"
-          className="inline-flex gap-x-2 rounded-md border border-transparent p-2 font-mono text-2xl font-semibold transition-colors hover:border-primary"
+          className="inline-flex items-baseline gap-x-2 rounded-md border border-transparent p-2 font-mono text-3xl font-semibold transition-colors hover:border-primary"
         >
           <Image src={BannerIcon} width={28} height={28} alt="Resumarkd icon" />
           Resumarkd
