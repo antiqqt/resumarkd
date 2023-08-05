@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.goto(`${env.NEXT_PUBLIC_URL}/pdf-view`);
+    await page.goto(`${env.SITE_URL}/pdf-view`);
     await page.emulateMediaType('screen');
 
     const textareaSelector = '#textarea';
