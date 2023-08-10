@@ -71,7 +71,15 @@ type ContentEditorMenuProps = {
 };
 
 const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
-  const { bold, italic, underline } = {
+  const { undo, redo, bold, italic, underline } = {
+    undo: {
+      action: editor.commands.undo,
+    },
+
+    redo: {
+      action: editor.commands.redo,
+    },
+
     bold: {
       isActive: editor.isActive('bold'),
       toggle: editor.chain().focus().toggleBold().run,
@@ -91,11 +99,11 @@ const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
   return (
     <ul className="flex">
       <li className="flex items-center">
-        <MenuButton tooltip="Undo">
+        <MenuButton tooltip="Undo" onClick={undo.action}>
           <Undo />
         </MenuButton>
 
-        <MenuButton tooltip="Redo">
+        <MenuButton tooltip="Redo" onClick={redo.action}>
           <Redo />
         </MenuButton>
       </li>
