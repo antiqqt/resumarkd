@@ -30,6 +30,7 @@ import { cn } from '@/lib/cn';
 import type { Editor } from '@tiptap/react';
 import Image from 'next/image';
 import ThreeColumnsIcon from './../assets/three-columns.svg';
+import { getContentEditorCommands } from '../utils/contentEditorCommands';
 
 type MenuButtonProps = {
   children: ReactNode;
@@ -71,30 +72,8 @@ type ContentEditorMenuProps = {
 };
 
 const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
-  const { undo, redo, bold, italic, underline } = {
-    undo: {
-      action: editor.commands.undo,
-    },
-
-    redo: {
-      action: editor.commands.redo,
-    },
-
-    bold: {
-      isActive: editor.isActive('bold'),
-      toggle: editor.chain().focus().toggleBold().run,
-    },
-
-    italic: {
-      isActive: editor.isActive('italic'),
-      toggle: editor.chain().focus().toggleItalic().run,
-    },
-
-    underline: {
-      isActive: editor.isActive('underline'),
-      toggle: editor.chain().focus().toggleUnderline().run,
-    },
-  };
+  const { undo, redo, bold, italic, underline, bulletList, orderedList } =
+    getContentEditorCommands(editor);
 
   return (
     <ul className="flex">
@@ -152,11 +131,19 @@ const ContentEditorMenu = ({ editor }: ContentEditorMenuProps) => {
       <li className="self-stretch w-px bg-border"></li>
 
       <li className="flex items-center">
-        <MenuButton tooltip="Bullet list">
+        <MenuButton
+          tooltip="Bullet list"
+          isActive={bulletList.isActive}
+          onClick={bulletList.toggle}
+        >
           <List />
         </MenuButton>
 
-        <MenuButton tooltip="Ordered list">
+        <MenuButton
+          tooltip="Ordered list"
+          isActive={orderedList.isActive}
+          onClick={orderedList.toggle}
+        >
           <ListOrdered />
         </MenuButton>
       </li>

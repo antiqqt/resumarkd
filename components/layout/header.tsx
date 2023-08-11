@@ -16,8 +16,8 @@ const Header = () => {
           href="#"
           className="inline-flex items-baseline gap-x-2 rounded-md border border-transparent p-2 font-mono text-3xl font-semibold transition-colors hover:border-primary"
         >
-          <Image src={BannerIcon} width={28} height={28} alt="Resumarkd icon" />
-          Resumarkd
+          <Image src={BannerIcon} width={28} height={28} alt="Moth editor icon" />
+          Moth
         </a>
 
         <nav className="hidden gap-x-4 lg:flex">
